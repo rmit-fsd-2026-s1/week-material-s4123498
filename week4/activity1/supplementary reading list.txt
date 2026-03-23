@@ -1,0 +1,10 @@
+Agile methodology reading list
+
+While knowing some of the terminologies and key concepts in agile software development, the focus of this course is to develop good web app products including being able to organise your own tasks effectively.
+
+Please read the following reading list:
+https://agilemanifesto.org/principles.html
+https://www.geeksforgeeks.org/software-testing/what-is-agile-methodology/
+https://www.atlassian.com/agile/project-management/user-stories
+
+
