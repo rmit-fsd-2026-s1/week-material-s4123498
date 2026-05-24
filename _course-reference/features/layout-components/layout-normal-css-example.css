@@ -1,0 +1,72 @@
+/*
+WHERE TO PUT THIS IN YOUR TEST PROJECT:
+src/index.css or src/App.css
+
+USE THIS IF TAILWIND IS NOT INSTALLED.
+
+Matching JSX idea:
+
+<div className="app-shell">
+  <header className="site-header">...</header>
+  <main className="main-content">
+    <div className="two-column-layout">
+      <section className="panel">Form</section>
+      <section className="panel">Summary</section>
+    </div>
+  </main>
+  <footer className="site-footer">...</footer>
+</div>
+*/
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f8fafc;
+}
+
+.site-header {
+  background: #1d4ed8;
+  color: white;
+  padding: 20px 24px;
+}
+
+.site-header-inner,
+.site-footer-inner,
+.main-content {
+  width: 100%;
+  max-width: 1152px;
+  margin: 0 auto;
+}
+
+.main-content {
+  flex: 1;
+  padding: 32px 24px;
+}
+
+.two-column-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.panel {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgb(15 23 42 / 0.08);
+}
+
+.site-footer {
+  background: #111827;
+  color: white;
+  padding: 16px 24px;
+}
+
+@media (min-width: 768px) {
+  .two-column-layout {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
