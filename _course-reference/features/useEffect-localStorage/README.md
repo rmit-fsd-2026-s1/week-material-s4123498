@@ -21,6 +21,7 @@ calculate total from form fields      -> usually no, calculate directly or use u
 - `useEffect-dependency-array.tsx`: dependency array basics.
 - `useEffect-with-props.tsx`: effect runs when prop changes.
 - `localStorage-todos.tsx`: localStorage with state.
+- `local-storage-form-draft-reference.tsx`: save and reload a form draft.
 - `hooks/useLocalStorage.ts`: custom hook pattern.
 
 ## Fast Memory
@@ -39,4 +40,3 @@ no array       -> runs after every render
 [quoteId]      -> runs when quoteId changes
 return cleanup -> runs before unmount or before effect reruns
 ```
-
