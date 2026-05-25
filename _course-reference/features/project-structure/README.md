@@ -11,8 +11,15 @@ src/
   components/
     Header.tsx
     BookingForm.tsx
+    BookingList.tsx
     QuoteSummary.tsx
     Footer.tsx
+  pages/
+    index.tsx
+    booking-form.tsx
+    bookings.tsx
+  types/
+    types.ts
   context/
     QuoteContext.tsx
   utils/
@@ -22,6 +29,46 @@ src/
   App.tsx
   main.tsx
   index.css
+```
+
+## Vite React Structure
+
+Use this if the starter project has `vite.config.ts`.
+
+```text
+src/
+  api/
+    api.ts
+  components/
+    Header.tsx
+    LoanRequestForm.tsx
+  pages/
+    index.tsx
+    loan-request.tsx
+    requests.tsx
+  types/
+    types.ts
+  utils/
+    validation.ts
+  tests/
+    api.test.ts
+    validation.test.ts
+  App.tsx
+  main.tsx
+  index.css
+```
+
+Important:
+
+```text
+Vite does not auto-route src/pages.
+You must connect pages in App.tsx with React Router or a manual path switch.
+```
+
+Open this file for a full Vite map:
+
+```text
+_course-reference/features/project-structure/vite-file-map-reference.ts
 ```
 
 ## What Goes Where
@@ -37,6 +84,12 @@ Examples:
 - `getBookings()`
 
 Do not put JSX in this folder. Use `.ts`, not `.tsx`.
+
+Correct imports:
+
+```ts
+import type { LoanRequest, LaptopModel } from "../types/types";
+```
 
 ### `components/`
 
@@ -73,6 +126,12 @@ Good helper functions:
 
 These are the easiest files to unit test.
 
+Correct imports:
+
+```ts
+import type { LoanRequest } from "../types/types";
+```
+
 ### `tests/`
 
 Put unit tests here.
@@ -100,6 +159,103 @@ Good test targets:
 import { postQuote } from "../api/api";
 import { validateBookingForm } from "../utils/validation";
 import QuoteSummary from "./QuoteSummary";
+```
+
+## Common Wrong vs Right
+
+### Types Import
+
+Wrong:
+
+```ts
+import LoanRequest from "../types/types";
+```
+
+Right:
+
+```ts
+import type { LoanRequest } from "../types/types";
+```
+
+Reason:
+
+```text
+types.ts usually exports named types, not default exports.
+```
+
+### API Type Path
+
+Wrong inside `src/api/api.ts`:
+
+```ts
+import type { LoanRequest } from "./types/types";
+```
+
+Right:
+
+```ts
+import type { LoanRequest } from "../types/types";
+```
+
+Reason:
+
+```text
+api.ts is inside src/api, so ../types/types means go back to src, then into types.
+```
+
+### API Function Use
+
+If `api.ts` already does `response.json()`, the component should not do it again.
+
+Wrong:
+
+```ts
+const response = await getLoanRequests();
+const data = await response.json();
+```
+
+Right:
+
+```ts
+const data = await getLoanRequests();
+setLoanRequests(data);
+```
+
+### Form Submit
+
+Wrong:
+
+```ts
+setErrors(errors);
+postLoanRequest(formData);
+```
+
+Right:
+
+```ts
+const errors = validateLoanRequest(formData);
+setErrors(errors);
+
+if (errors.length > 0) {
+  return;
+}
+
+await postLoanRequest(formData);
+```
+
+### LocalStorage
+
+Submit page saves:
+
+```ts
+localStorage.setItem("loanRequests", JSON.stringify(updatedRequests));
+```
+
+List page reads:
+
+```ts
+const saved = localStorage.getItem("loanRequests");
+const requests = saved ? JSON.parse(saved) : [];
 ```
 
 ## How Files Link Together

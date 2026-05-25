@@ -5,6 +5,7 @@ Use this folder when a component needs to call an API and show loading, error, o
 ## Which File To Open
 
 - `api-component-get-post-reference.tsx`: smallest exam-style component with GET on page load and POST on form submit.
+- `api-endpoint-connection-checklist.md`: Postman, endpoint URL, fetch, POST, and Axios workflow.
 - `async-fetch-loading-error.tsx`: Google Books API example with a custom hook.
 - `api-query-loading-error.tsx`: React Query example.
 
